@@ -8,6 +8,7 @@ import java.util.Scanner;
  * AC了这一道题
  * 有n堆苹果，从第一堆的第一个开始排序，给出一个序号问在第几堆
  * 关键：二分查找
+ * 题目：https://www.nowcoder.com/discuss/93285?type=2&order=3&pos=23&page=1
  * */
 public class MainAC {
     public static void main(String[] args) {
