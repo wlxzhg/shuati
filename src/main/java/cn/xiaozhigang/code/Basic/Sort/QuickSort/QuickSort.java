@@ -16,44 +16,79 @@ public class QuickSort {
         System.out.println(Arrays.toString(test2));
         System.out.println(Arrays.toString(test3));
     }
-
-    public static void quickSort(int[] arr) {
-        if (arr == null || arr.length <= 1) {
-            return;
-        }
-
-        quicksort(arr,0,arr.length - 1);
-    }
-
-    private static void quicksort(int[] arr,int start,int end) {
-        if (start < end) {
-            int index = partition(arr, start, end);
-            quicksort(arr, start, index - 1);
-            quicksort(arr, index + 1, end);
-        }
-    }
-
-    private static int partition(int[] arr,int start,int end) {
-        int privot = arr[start];
-        int small = start - 1;
-        swap(arr, start, end);
-        int index = start;
-        for(;index < end; index++) {
-            if (arr[index] < privot) {
-                small++;
-                swap(arr, small, index);
-            }
-        }
-        small++;
-        swap(arr, small, end);
-        return small;
-    }
-
     private static void swap(int[] arr,int i,int j) {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
     }
+
+    private static int partition(int[] arr,int start,int end) {
+        int privote = arr[start];
+        int small = start - 1;
+        swap(arr,start,end);
+        for(int i = start; i < end; i++) {
+            if(arr[i] < privote) {
+                small++;
+                swap(arr,small,i);
+            }
+        }
+        small++;
+        swap(arr,small,end);
+        return small;
+    }
+
+    private static void quickSort(int[] arr,int start,int end) {
+        if(start < end) {
+            int partition = partition(arr,start,end);
+            quickSort(arr,start,partition - 1);
+            quickSort(arr,partition + 1,end);
+        }
+    }
+
+    public static void quickSort(int[] arr) {
+        if(arr == null || arr.length <= 1) return;
+
+        quickSort(arr,0,arr.length - 1);
+    }
+
+
+//    public static void quickSort(int[] arr) {
+//        if (arr == null || arr.length <= 1) {
+//            return;
+//        }
+//
+//        quicksort(arr,0,arr.length - 1);
+//    }
+//
+//    private static void quicksort(int[] arr,int start,int end) {
+//        if (start < end) {
+//            int index = partition(arr, start, end);
+//            quicksort(arr, start, index - 1);
+//            quicksort(arr, index + 1, end);
+//        }
+//    }
+//
+//    private static int partition(int[] arr,int start,int end) {
+//        int privot = arr[start];
+//        int small = start - 1;
+//        swap(arr, start, end);
+//        int index = start;
+//        for(;index < end; index++) {
+//            if (arr[index] < privot) {
+//                small++;
+//                swap(arr, small, index);
+//            }
+//        }
+//        small++;
+//        swap(arr, small, end);
+//        return small;
+//    }
+//
+//    private static void swap(int[] arr,int i,int j) {
+//        int tmp = arr[i];
+//        arr[i] = arr[j];
+//        arr[j] = tmp;
+//    }
 
 //    public static void quickSort(int[] arr) {
 //        if(arr == null || arr.length == 0) return;
