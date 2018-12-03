@@ -9,6 +9,8 @@ public class Solution {
      *       显然一层中最后一个结点的next结点为null。
      * 思路：按层次遍历，遍历同时保存上一个遍历的结点，将上一个结点的next赋值为
      *       当前遍历结点。最后一个结点的next赋值为null。
+     * 思路2：递归方式。由于是完全二叉树，每个节点必有左右孩子。那么左孩子的next
+     *        便是其右孩子。右孩子的next是父节点的next的右孩子
      * */
     public void connect(TreeLinkNode root) {
         if(root == null)
@@ -35,6 +37,24 @@ public class Solution {
             }
             last.next = null;
         }
+    }
+
+    public void connect2(TreeLinkNode root) {
+        if(root == null)
+            return;
+
+        if(root.left != null) {
+            root.left.next = root.right;
+        }
+
+        if(root.right != null)
+            if(root.next != null)
+                root.right.next = root.next.left;
+            else
+                root.right.next = null;
+
+        connect2(root.left);
+        connect2(root.right);
     }
 
     public static void main(String[] args) {
